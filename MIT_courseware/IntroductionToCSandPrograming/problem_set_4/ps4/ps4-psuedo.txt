@@ -1,0 +1,15 @@
+Your algorithms should be plain English explanations for the steps your program will take to solve these problems.
+
+Write out your algorithm for Problem 2 here:
+for shift in from 0 to 26
+    decode with -shift
+    flag = 0
+    for word in decoded string
+        if word is not a word:
+            flag = 1
+            break
+    if flag == 0: 
+        return decoded message
+return "no shift found"
+
+Write out your algorithm for Problem 4 here:
