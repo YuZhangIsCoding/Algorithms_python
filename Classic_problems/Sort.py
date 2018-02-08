@@ -72,6 +72,28 @@ class sol(object):
         for i in range(k):
             ans.extend(counter[i])
         return ans
+    def QuickSort(self, nums):
+        self.QuickSort_recur(nums, 0, len(nums)-1)
+        return nums
+    def QuickSort_recur(self, nums, lower, higher):
+        if higher-lower < 1:
+            return
+        pivot = (lower+higher)//2
+        nums[pivot], nums[higher] = nums[higher], nums[pivot]
+        p1 = lower
+        p2 = higher-1
+        while p1 <= p2:
+            if nums[p1] <= nums[higher]:
+                p1 += 1
+            else:
+                nums[p1], nums[p2] = nums[p2], nums[p1]
+                p2 -= 1
+        nums[p1], nums[higher] = nums[higher], nums[p1]
+        self.QuickSort_recur(nums, lower, p1-1)
+        self.QuickSort_recur(nums, p1+1, higher)
+        return
+
+
         
 
 mysol = sol()
@@ -84,12 +106,15 @@ import random
 ##print rad
 
 ## comparison of merge sort and counting sort, counting sort is much faster ##
-nums = [random.randint(0, 1000) for _ in range(100000)]
+nums = [random.randint(0, 1000) for _ in range(10000)]
 import time
 time1 = time.time()
 mysol.mergeSort(nums)
 time2 = time.time()
 mysol.countingSort(nums)
 time3 = time.time()
+mysol.QuickSort(nums)
+time4 = time.time()
 print 'merge sort:', time2-time1
 print 'counting sort', time3-time2
+print 'quick sort', time4-time3

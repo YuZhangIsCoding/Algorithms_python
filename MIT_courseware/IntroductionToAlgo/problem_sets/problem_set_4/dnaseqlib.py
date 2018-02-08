@@ -76,7 +76,7 @@ def buildComparisonImage(filename, w, h, alen, blen, matches, remapfn=lambda x:m
     for y in range(0, h):
         for x in range(0, w):
             val = 255 - int(math.ceil(remapfn((arr.get(x,y) / maxval)) * 255.0))
-            img.putpixel((x,y), (val,val,val))
+            img.putpixel((x,y), (val, val, val))
     print "...done normalizing and plotting."
     img.save(filename)
 

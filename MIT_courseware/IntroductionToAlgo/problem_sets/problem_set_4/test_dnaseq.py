@@ -27,7 +27,7 @@ class TestExactSubmatches(unittest.TestCase):
    def test_one(self):
        foo = 'yabcabcabcz'
        bar = 'xxabcxxxx'
-       matches = list(getExactSubmatches(iter(foo), iter(bar), 3, 1))
+       matches = list(getExactSubmatches(iter(foo), iter(bar), 3, 2))
        correct = [(1,2), (4,2), (7,2)]
        self.assertTrue(len(matches) == len(correct))
        for x in correct:
