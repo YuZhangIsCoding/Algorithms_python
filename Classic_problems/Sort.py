@@ -1,3 +1,6 @@
+import heapq
+import operator
+
 class sol(object):
     def mergeSort(self, nums):
         '''
@@ -92,8 +95,48 @@ class sol(object):
         self.QuickSort_recur(nums, lower, p1-1)
         self.QuickSort_recur(nums, p1+1, higher)
         return
-
-
+    def HeapSort(self, nums):
+        '''python has provided an implementation of priority queue algorithm
+        heapq. Use this library to implement heapsort by pushing all values
+        onto a heap and then popping off the smallest values at a time.
+        '''
+        h = []
+        for value in nums:
+            heapq.heappush(h, value)
+        ## or could just use heapq.heapify(nums) to transform a list into heap.
+        return [heapq.heappop(h) for i in range(len(h))]
+    def HeapSort_inplace(self, nums):
+        '''The previous heapsort using builtin heapq may require extra O(n)
+        spaces. We could however implement a inplace heapsort that swaps values
+        in the list, which only needs O(1) extra space.
+        '''
+        n = len(nums)
+        for i in range(n//2-1, -1, -1):
+            self.heapify(nums, n, i)
+        while n > 1:
+            nums[0], nums[n-1] = nums[n-1], nums[0]
+            n -= 1
+            self.heapify(nums, n, 0)
+        return nums
+    def heapify(self, nums, n, i, compare = operator.gt):
+        '''Assume that that trees rooted at left and right child of i are 
+        already heap tree. heapify() corrects the violation at i.
+        n is useful to maintain the space O(1) by swap values inplace.
+        Default is to maintain a max heap, but can easily modified to get a min
+        heap.
+        '''
+        left = 2*i+1
+        right = left+1
+        if left < n and compare(nums[left], nums[i]):
+            extreme = left
+        else:
+            extreme = i
+        if right < n and compare(nums[right], nums[extreme]):
+            extreme = right
+        if extreme != i:
+            nums[extreme], nums[i] = nums[i], nums[extreme]
+            self.heapify(nums, n, extreme)
+        
         
 
 mysol = sol()
@@ -106,15 +149,22 @@ import random
 ##print rad
 
 ## comparison of merge sort and counting sort, counting sort is much faster ##
-nums = [random.randint(0, 1000) for _ in range(10000)]
+nums = [random.randint(0, 1000) for _ in range(100000)]
 import time
 time1 = time.time()
 mysol.mergeSort(nums)
 time2 = time.time()
 mysol.countingSort(nums)
 time3 = time.time()
-mysol.QuickSort(nums)
+## Can do inplace but here will modify the nums
+mysol.QuickSort(nums[:])
 time4 = time.time()
+mysol.HeapSort(nums)
+time5 = time.time()
+mysol.HeapSort_inplace(nums)
+time6 = time.time()
 print 'merge sort:', time2-time1
 print 'counting sort', time3-time2
 print 'quick sort', time4-time3
+print 'heap sort(using heapq)', time5-time4
+print 'heap sort(inplace)', time6-time5
