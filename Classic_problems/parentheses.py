@@ -1,4 +1,6 @@
 class sol(object):
+    '''This is actually a catalan number problem.
+    '''
     def generateParenthesis(self, n):
         '''
         Given n pairs of parenthesis, generate all combination of parentheses.
