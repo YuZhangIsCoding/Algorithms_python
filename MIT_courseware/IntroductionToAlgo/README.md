@@ -1,6 +1,6 @@
 # Introduction to Algorithms
 
-  This course provides an introduction to mathematical modeling of computational problems. It covers the common algorithms, algorithmic paradigms, and data structures used to solve these problems. The course emphasizes the relationship between algorithms and programming, and introduces basic performance measures and analysis techniques for these problems. The course can be divided into several blocks of topics, as listed below
+This course provides an introduction to mathematical modeling of computational problems. It covers the common algorithms, algorithmic paradigms, and data structures used to solve these problems. The course emphasizes the relationship between algorithms and programming, and introduces basic performance measures and analysis techniques for these problems. The course can be divided into several blocks of topics, as listed below
 
 1. Introduction, cost model, asymptotic complexity
     * Algorithmic thinking, peak finding
