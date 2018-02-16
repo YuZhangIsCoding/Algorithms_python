@@ -14,8 +14,8 @@ class Multidict:
         ## the following may contain collisions use put() instead
         ##for item in pairs:
         ##    self.mydict[item[0]] = [item[1]]
-        ##for item in pairs:
-        ##    self.put(itemp[0], item[1])
+        for item in pairs:
+            self.put(itemp[0], item[1])
 
     # Associates the value v with the key k.
     def put(self, k, v):
