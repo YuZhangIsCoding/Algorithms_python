@@ -1,4 +1,4 @@
-# Algorithms and data structure
+# Algorithms and Data Structures
 
 I've been using Python as my major coding language for years, and it worked just fine for most problems I encountered in my research. I wrote scripts to build my all-atom systems and postprocess the data generated from my simulations. But sometimes, I feel that the code I wrote is not very efficient. One of the reasons is that I never really systematically understand the algorithms and data structure I used everyday! So, I decide to start over by learning the algorithms and data structure step by step. This repository contains some lecture notes and interesting problems that I learned during the way.
 
