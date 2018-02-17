@@ -104,10 +104,11 @@ class sol(object):
         Actually don't need extra bisearch method. This can be done within the 
         framework of first binary search.
         '''
+        pass
 
     def search_d(self, nums, target):
         '''
-        Follow up the previous problem, what if duplicates are allowd?
+        Follow up the previous problem, what if duplicates are allowed?
         Would this affect the run-time complexity? How and why?
 
         It would increase the time complexity to find the pilot point using binary
