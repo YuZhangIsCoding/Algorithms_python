@@ -18,4 +18,6 @@ This course provides an introduction to mathematical modeling of computational p
 4. Numerics
     * Integer arithmetic, Karatsuba multiplication
     * Square roots, Newton's method
-
+5. Graphs
+    * Breadth-first search (BFS)
+    * Depth-first search (DFS), topological sorting
