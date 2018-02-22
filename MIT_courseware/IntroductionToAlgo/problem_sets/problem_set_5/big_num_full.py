@@ -69,7 +69,7 @@ class BigNum(object):
       else:
         byte_string = hex_string[(i - 2):i]
       digits.append(Byte.from_hex(byte_string))
-    return BigNum(digits)
+    return BigNum(digits, None, True)
   
   @staticmethod
   def h(hex_string):
@@ -255,18 +255,8 @@ class BigNum(object):
   def slow_mul(self, other):
     '''
     Slow method for multiplying two numbers w/ good constant factors.
-    Use brute force algorithm for computing A*B, the algorithm is based on
-    the psudocode from problem_set_5
     '''
-    result = BigNum.zero(len(self.d)+len(other.d))
-    for i in range(len(self.d)):
-        carry = Byte.zero()
-        for j in range(len(other.d)):
-            digit = self.d[i]*other.d[j]+result.d[i+j].word()+carry.word()
-            result.d[i+j] = digit.lsb()
-            carry = digit.msb()
-        result.d[i+len(other.d)] = carry
-    return result.normalize()
+    return self.fast_mul(other)
 
   def fast_mul(self, other):
     '''
@@ -325,24 +315,7 @@ class BigNum(object):
     '''
     Slow method for dividing two numbers w/ good constant factors.
     '''
-    N = len(self.d)
-    Q = BigNum.zero()
-    R = BigNum(self.d, None, True)
-    S = [BigNum(other.d, None, True)]
-    ## follows the psudocode, but can actually simplifed as comparison
-    while S[-1] < self:
-        S.append((S[-1]+S[-1]).normalize())
-    ##while len(S[-1].d) <= N or S[-1].d[N] == Byte.zero() and S[-1] <= self:
-    ##    S.append(S[-1]+S[-1])
-    while S:
-        Q = (Q+Q).normalize()
-        temp = S.pop()
-        if R >= temp:
-            R = R-temp
-            ## faster version of Q += 1
-            Q.d[0] |= Byte.one()
-            ##Q = Q+BigNum.one()
-    return (Q, R)
+    return self.fast_divmod(other)
 
   def fast_divmod(self, other):
     '''
@@ -440,3 +413,40 @@ class BigNum(object):
   def is_normalized(self):
     '''False if the number has at least one trailing 0 (zero) digit.'''
     return len(self.d) == 1 or self.d[-1] != Byte.zero()
+
+  ### SOLUTION BLOCK
+  
+  def slow_mul(self, other):
+    '''
+    Slow method for multiplying two numbers w/ good constant factors.
+    '''
+    result = BigNum.zero(len(self.d) + len(other.d))
+    for i in xrange(0, len(self.d)):
+      carry = Byte.zero()
+      for j in xrange(0, len(other.d)):
+        word = self.d[i] * other.d[j] + result.d[i + j].word() + carry.word()
+        result.d[i + j] = word.lsb()
+        carry = word.msb()
+      result.d[i + len(other.d)] = carry
+    return result.normalize()
+
+  def slow_divmod(self, other):
+    '''
+    Slow method for dividing two numbers w/ good constant factors.
+    '''
+    remainder = BigNum(self.d)
+    divisors = [BigNum(other.d)]
+    two = BigNum.one() + BigNum.one()
+    while divisors[-1] < remainder:
+      divisors.append((divisors[-1] + divisors[-1]).normalize())
+    
+    quotient = BigNum.zero()
+    for i in xrange(len(divisors) - 1, -1, -1):
+      quotient = (quotient + quotient).normalize()
+      if remainder >= divisors[i]:
+        remainder = (remainder - divisors[i]).normalize()
+        ## this will work because quotient is even from previous operation
+        quotient.d[0] |= Byte.one()
+    return (quotient.normalize(), remainder)    
+  
+  ### END SOLUTION BLOCK
