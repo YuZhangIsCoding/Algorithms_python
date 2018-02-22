@@ -4,6 +4,7 @@ This problem set introduces 8-bit and 16-bit operations. Here are some basics
 concepts from the code.
 
 1. Singletons
+
 The codes used the notion of [singletons](https://en.wikipedia.org/wiki/Singleton_pattern),
 which means that there is one and only one object for a particular type. In this case, one and 
 only one Byte object is created for a value ranged from 0x00 to 0xFF.
@@ -28,12 +29,13 @@ are of the same class
     * All numeric operation will return a Word object, and there might be over flow problems.
 
 1. Word
+
 Word is similar to Byte as an class object. An Word object can be created by combining two 
 Byte object, one for most significant Byte and one for least significant Byte. 
     * Attributes in Word:
         * _word: stores the value, ranging from 0x00 to 0xFFFF.
-        * _lsb: Byte object, pointing to Byte._bytes[self._word & 0xFF]
-        * _msb: Byte object, pointing to Byte._bytes[self._word >> 8]
+        * _lsb: Byte object, pointing to Byte._bytes\[self._word & 0xFF\]
+        * _msb: Byte object, pointing to Byte._bytes\[self._word >> 8\]
         * _hex: stores 4 hexadecimal digits, from 0000 to FFFF
     * Just like \_bytes in Byte, there's also a \_words list stores the Word singletons, and 
 this list is used in Byte.word() function and assigning \_word in Byte.
