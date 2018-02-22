@@ -37,5 +37,5 @@ concepts from the code.
       * _lsb: Byte object, pointing to Byte._bytes\[self._word & 0xFF\]
       * _msb: Byte object, pointing to Byte._bytes\[self._word >> 8\]
       * _hex: stores 4 hexadecimal digits, from 0000 to FFFF
-      * Just like \_bytes in Byte, there's also a \_words list stores the Word singletons, and 
-      this list is used in Byte.word() function and assigning \_word in Byte.
+   * Just like \_bytes in Byte, there's also a \_words list stores the Word singletons, and 
+   this list is used in Byte.word() function and assigning \_word in Byte.
