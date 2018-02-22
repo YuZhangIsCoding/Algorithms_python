@@ -30,8 +30,8 @@ concepts from the code.
 
 3. Word
 
-Word is similar to Byte as an class object. An Word object can be created by combining two 
-Byte object, one for most significant Byte and one for least significant Byte. 
+   Word is similar to Byte as an class object. An Word object can be created by combining two 
+   Byte object, one for most significant Byte and one for least significant Byte. 
    * Attributes in Word:
       * _word: stores the value, ranging from 0x00 to 0xFFFF.
       * _lsb: Byte object, pointing to Byte._bytes\[self._word & 0xFF\]
